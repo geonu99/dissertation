@@ -9,7 +9,7 @@ def textiter(filename, maxln = -1):
                 return
 
 background = textiter("./data/enwiki-20211001-pages-articles-multistream1.xml-p1p41242.extracted", 10000)
-target = textiter("./data/test")
+target = textiter("./data/sample")
 
 background_counts = count_words(background, min_count = 4, language = "en_core_web_sm")
 target_counts = count_words(target, min_count = 4, language = "en_core_web_sm")
