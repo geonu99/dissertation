@@ -42,7 +42,7 @@ if __name__ == "__main__":
         filename = "enwiki-20211001-pages-articles-multistream1.xml-p1p41242"
 
     dataiter = extract_text_from_wiki_xml(filename)
-    outfile = open(sys.argv[1] + ".extracted", "w")
+    outfile = open(filename + ".extracted", "w")
 
     for ln, text in enumerate(dataiter, 1):
         text = normalize(text)
@@ -51,6 +51,6 @@ if __name__ == "__main__":
         print(text, file = outfile)
 
         if ln % 100000 == 0:
-            print("%d lines" % ln, file = sys.stder)
+            print("%d lines" % ln, file = sys.stderr)
 
     outfile.close()
