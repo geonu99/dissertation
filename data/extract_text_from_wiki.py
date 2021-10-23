@@ -36,17 +36,21 @@ def normalize(text):
 
 if __name__ == "__main__":
 
-    if len(sys.argv) != 2:
-        sys.exit("Usage: %s wiki_xml_file" % sys.argv[0])
+    if len(sys.argv) == 2:
+        filename = sys.argv[1]
+    else:
+        filename = "enwiki-20211001-pages-articles-multistream1.xml-p1p41242"
 
-    filename = sys.argv[1]
     dataiter = extract_text_from_wiki_xml(filename)
     outfile = open(sys.argv[1] + ".extracted", "w")
 
-    for text in dataiter:
+    for ln, text in enumerate(dataiter, 1):
         text = normalize(text)
         if not text:
             continue
         print(text, file = outfile)
+
+        if ln % 100000 == 0:
+            print("%d lines" % ln, file = sys.stder)
 
     outfile.close()
